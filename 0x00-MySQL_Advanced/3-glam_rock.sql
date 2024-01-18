@@ -14,6 +14,8 @@ SELECT
     END AS lifespan
 FROM
     metal_bands
+WHERE
+    style = 'Glam rock'
 GROUP BY
     lifespan
     DESC

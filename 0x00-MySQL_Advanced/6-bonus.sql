@@ -15,7 +15,7 @@ BEGIN
 
     SELECT id INTO in_project_id
     FROM projects
-    WHERE name = project_name;
+    WHERE name = in_project_name;
 
     IF in_project_id IS NULL THEN
         INSERT INTO projects (name) VALUES (in_project_name);

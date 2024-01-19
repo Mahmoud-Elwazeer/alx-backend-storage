@@ -15,7 +15,7 @@ SELECT
     band_name,
     CASE
         WHEN split IS NOT NULL THEN YEAR(split) - YEAR(formed)
-        ELSE 2022 - YEAR(formed)
+        ELSE 2023 - YEAR(formed)
     END AS lifespan
 FROM
     metal_bands

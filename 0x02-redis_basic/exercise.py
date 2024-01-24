@@ -24,6 +24,8 @@ class Cache:
         if value is not None:
             if fn is not None:
                 return fn(value)
+            else:
+                return value
         else:
             None
 

@@ -14,10 +14,10 @@ class Cache:
 
     def store(self, data: Union[str, float, bytes, int]) -> str:
         """take data argument and return key"""
-        self.key: str = str(uuid.uuid4())
+        key: str = str(uuid.uuid4())
         if (isinstance(data, (str, bytes))):
-            self._redis.set(self.key, data)
+            self._redis.set(key, data)
         elif (isinstance(data, (int, float))):
-            self._redis(self.key, str(data))
+            self._redis(key, str(data))
 
-        return self.key
+        return key

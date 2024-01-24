@@ -18,6 +18,6 @@ class Cache:
         if (isinstance(data, (str, bytes))):
             self._redis.set(self.key, data)
         elif (isinstance(data, (int, float))):
-            self._redis(self.key, data)
+            self._redis(self.key, str(data))
 
         return self.key

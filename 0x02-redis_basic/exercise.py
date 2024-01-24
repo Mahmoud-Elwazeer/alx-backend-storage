@@ -3,6 +3,21 @@
 import redis
 import uuid
 from typing import Union, Callable
+from functools import wraps
+
+
+def count_calls(method: Callable) -> Callable:
+    "define decorator  how many times methods of the Cache class"
+    @wraps(method)
+    def wrapper(self, *args, **kwds):
+        # Increment the count for the qualified name of the method
+        key = method.__qualname__
+        self._redis.incr(key)
+        # Increment the overall call count for the instance
+        wrapper.calls += 1
+        return method(self, *args, **kwds)
+    wrapper.calls = 0
+    return wrapper
 
 
 class Cache:
@@ -12,6 +27,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
+    @count_calls
     def store(self, data: Union[str, float, bytes, int]) -> str:
         """take data argument and return key"""
         random_key: str = str(uuid.uuid4())
@@ -19,7 +35,8 @@ class Cache:
 
         return random_key
 
-    def get(self, key: str, fn: Callable = None) -> Union[str, float, bytes, int, None]:
+    def get(self, key: str, fn: Callable = None) -> Union[
+                        str, float, bytes, int, None]:
         value = self._redis.get(key)
         if value is not None:
             if fn is not None:
@@ -31,6 +48,6 @@ class Cache:
 
     def get_str(self, key: str) -> Union[str, None]:
         return self.get(key, fn=str)
-    
+
     def get_int(self, key: str) -> Union[int, None]:
         return self.get(key, fn=int)

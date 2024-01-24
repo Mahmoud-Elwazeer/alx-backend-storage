@@ -14,12 +14,7 @@ class Cache:
 
     def store(self, data: Union[str, float, bytes, int]) -> str:
         """take data argument and return key"""
-        random_key: str = str(uuid.uuid4())
-        # if (isinstance(data, (str, bytes))):
-        #     self._redis.set(key, data)
-        # elif (isinstance(data, (int, float))):
-        #     self._redis(key, str(data))
-
+        random_key: str = str(uuid())
         self._redis.set(random_key, data)
 
         return random_key

@@ -42,7 +42,7 @@ def replay(method: Callable) -> None:
 
     print("{} was called {} times:".format(name, calls))
     for i, o in zip(input, output):
-        print("{}(*({},)) -> {}".format(
+        print("{}(*{})) -> {}".format(
             name,
             i.decode('utf-8'),
             o.decode('utf-8')

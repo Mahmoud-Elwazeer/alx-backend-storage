@@ -2,7 +2,7 @@
 """import libraries"""
 import redis
 import uuid
-from typing import Any
+from typing import Union
 
 
 class Cache:
@@ -12,7 +12,7 @@ class Cache:
         self._redis: redis.StrictRedis = redis.Redis()
         self._redis.flushdb
 
-    def store(self, data: [str, float, bytes, int]) -> str:
+    def store(self, data: Union[str, float, bytes, int]) -> str:
         """take data argument and return key"""
         self.key: str = str(uuid.uuid4())
         self._redis.set(self.key, data)

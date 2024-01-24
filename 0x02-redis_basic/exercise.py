@@ -5,7 +5,7 @@ import uuid
 from typing import Any
 
 
-class Cache():
+class Cache:
     """Writing Data to Redis"""
     def __init__(self):
         """init class"""

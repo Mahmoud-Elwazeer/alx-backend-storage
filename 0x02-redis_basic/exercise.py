@@ -8,9 +8,9 @@ from typing import Union
 class Cache:
     """Writing Data to Redis"""
     def __init__(self):
-        """init class"""
+        """init the class"""
         self._redis = redis.Redis()
-        self._redis.flushdb
+        self._redis.flushdb()
 
     def store(self, data: Union[str, float, bytes, int]) -> str:
         """take data argument and return key"""

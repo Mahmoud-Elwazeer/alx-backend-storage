@@ -42,7 +42,7 @@ def replay(method: Callable) -> None:
 
     print("{} was called {} times:".format(name, calls))
     for i, o in zip(input, output):
-        print("{}(*{})) -> {}".format(
+        print("{}(*('{}',)) -> {}".format(
             name,
             i.decode('utf-8'),
             o.decode('utf-8')
@@ -67,6 +67,7 @@ class Cache:
 
     def get(self, key: str, fn: Callable = None) -> Union[
                         str, float, bytes, int, None]:
+        """get data from redis-server"""
         value = self._redis.get(key)
         if value is not None:
             if fn is not None:

@@ -25,7 +25,7 @@ def call_history(method: Callable) -> Callable:
     """define decorator to add to list inputs and outputs"""
     @wraps(method)
     def wrapper(self, *args, **kwds):
-        self._redis.rpush("{}:inputs".format(method.__qualname__), *args)
+        self._redis.rpush("{}:inputs".format(method.__qualname__), str(args))
         key = method(self, *args, **kwds)
         self._redis.rpush("{}:outputs".format(method.__qualname__), key)
         return key

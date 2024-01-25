@@ -14,7 +14,7 @@ print("Methods:")
 method = ["GET", "POST", "PUT", "PATCH", "DELETE"]
 for i in method:
     num_methods = col.count_documents({'method': i})
-    print('\tmethod {}: {}'.format(i, num_methods))
+    print('    method {}: {}'.format(i, num_methods))
 
 num_status = col.count_documents({'path': '/status'})
 print("{} status check".format(num_status))

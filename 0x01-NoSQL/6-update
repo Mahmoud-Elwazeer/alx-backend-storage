@@ -1,5 +1,5 @@
 // update or adds a new attribute to a document in the collection
-db.school.update(
+db.school.update_many(
     {'name': 'Holberton school'},
     { $set:
         {
